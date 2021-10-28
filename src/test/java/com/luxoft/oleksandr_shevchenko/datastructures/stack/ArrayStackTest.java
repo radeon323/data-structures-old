@@ -1,4 +1,4 @@
-package com.luxoft.datastructures.stack;
+package com.luxoft.oleksandr_shevchenko.datastructures.stack;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -10,7 +10,7 @@ public class ArrayStackTest {
 
 
     @Test
-    public void testPushAndPopWorkCorrectly(){
+    public void testPushAndPopWorkCorrectlyAndChangeSize(){
         ArrayStack arrayStack = new ArrayStack();
         arrayStack.push("A");
         arrayStack.push("B");
@@ -18,6 +18,22 @@ public class ArrayStackTest {
         assertEquals(2, arrayStack.size());
         assertEquals("B", arrayStack.pop());
         assertEquals("A", arrayStack.pop());
+        assertEquals(0, arrayStack.size());
+        assertTrue(arrayStack.isEmpty());
+    }
+
+    @Test
+    public void testPushOverInitialCapacityAndPopWorkCorrectlyAndChangeSize(){
+        ArrayStack arrayStack = new ArrayStack();
+        for (int i = 0; i < 15; i++) {
+            arrayStack.push(i);
+        }
+
+        assertEquals(15, arrayStack.size());
+        for (int i = 14; i >= 0; i--) {
+            assertEquals(i, arrayStack.pop());
+        }
+
         assertEquals(0, arrayStack.size());
         assertTrue(arrayStack.isEmpty());
     }

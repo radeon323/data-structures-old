@@ -1,6 +1,4 @@
-package com.luxoft.datastructures.stack;
-
-import java.security.PublicKey;
+package com.luxoft.oleksandr_shevchenko.datastructures.stack;
 
 public class ArrayStack implements Stack{
     private int size;
@@ -16,6 +14,7 @@ public class ArrayStack implements Stack{
         array[size] = value;
         size++;
     }
+
 
     @Override
     public Object pop() {

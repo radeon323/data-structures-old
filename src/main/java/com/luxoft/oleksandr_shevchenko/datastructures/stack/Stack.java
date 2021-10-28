@@ -1,4 +1,4 @@
-package com.luxoft.datastructures.stack;
+package com.luxoft.oleksandr_shevchenko.datastructures.stack;
 
 public interface Stack {
 
