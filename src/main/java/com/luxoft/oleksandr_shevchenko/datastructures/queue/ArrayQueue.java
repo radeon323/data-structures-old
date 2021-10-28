@@ -74,11 +74,11 @@ public class ArrayQueue implements Queue {
 
     @Override
     public String toString(){
-        String string = "";
+        StringBuilder string = new StringBuilder();
         for (int i = 0; i < size; i++) {
-            string += array[i];
+            string.append(array[i]);
             if (i < size - 1){
-                string = string +", ";
+                string.append(", ");
             }
         }
         return "[" + string + "]";
