@@ -66,10 +66,32 @@ public class ReflectionUtils {
 
 
     //    Метод принимает Class и выводит всех предков класса и все интерфейсы которое класс имплементирует
-
+    static void getAllSuperClassesAndInterfaces(Class clazz) {
+        System.out.println(clazz.getSuperclass());
+        Class[] interfaces = clazz.getInterfaces();
+        for (Class iinterface : interfaces) {
+            System.out.println(iinterface.getName());
+        }
+    }
 
 
     //    Метод принимает объект и меняет всего его приватные поля на их нулевые значение (null, 0, false etc)+
+    static void changePrivateFieldsToDefault(Object obj) throws IllegalAccessException {
+        Field[] fields = obj.getClass().getDeclaredFields();
+        for (Field field : fields) {
+            field.setAccessible(true);
+            if (Modifier.isPrivate(field.getModifiers())) {
+                if (field.getType().getSuperclass() == Object.class) {
+                    field.set(obj, null);
+                } else if (field.getType() == int.class) {
+                    field.setInt(obj, 0);
+                } else if (field.getType() == boolean.class) {
+                    field.setBoolean(obj, false);
+                }
+            }
+        }
+    }
+
 
 }
 

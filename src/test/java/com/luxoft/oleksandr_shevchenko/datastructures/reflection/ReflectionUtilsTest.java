@@ -2,12 +2,8 @@ package com.luxoft.oleksandr_shevchenko.datastructures.reflection;
 
 import com.luxoft.oleksandr_shevchenko.datastructures.list.ArrayList;
 import org.junit.jupiter.api.Test;
-
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import static org.junit.jupiter.api.Assertions.*;
-
-
 
 
 class ReflectionUtilsTest {
@@ -27,18 +23,18 @@ class ReflectionUtilsTest {
 
     //    Метод принимает object и вызывает у него все методы без параметров
     @Test
-    public void testCallMethods() throws InvocationTargetException, IllegalAccessException, InstantiationException, NoSuchMethodException {
-        Object obj = ReflectionUtils.createObject(TestVo.class);
-        ReflectionUtils.callAllMethodsWithoutParameters(obj);
-        assertEquals(2, obj.getClass().getMethod("getA").invoke(obj));
+    public void testCallMethods() throws InvocationTargetException, IllegalAccessException {
+        TestVo testVo = new TestVo();
+        ReflectionUtils.callAllMethodsWithoutParameters(testVo);
+        assertEquals(2, testVo.getA());
     }
 
 
     //    Метод принимает object и выводит на экран все сигнатуры методов в который есть final
+    //    не знаю як зробити тест
     @Test
     public void testShowSignatures() throws InvocationTargetException, IllegalAccessException, InstantiationException, NoSuchMethodException {
         Object obj = ReflectionUtils.createObject(TestVo.class);
-        ReflectionUtils.showSignatures(obj);
         String actual = ReflectionUtils.showSignaturesReturn(obj);
         String expected = "public final void com.luxoft.oleksandr_shevchenko.datastructures.reflection.TestVo.incrementB()";
         assertEquals(expected, actual);
@@ -50,4 +46,23 @@ class ReflectionUtilsTest {
     public void testGetAllNotPublicMethods() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         assertTrue(ReflectionUtils.getAllNotPublicMethods(TestVo.class).contains("getAge"));
     }
+
+
+    //    Метод принимает Class и выводит всех предков класса и все интерфейсы которое класс имплементирует
+    //    не знаю як зробити тест
+    @Test
+    public void testGetAllSuperClassesAndInterfaces() {
+        ReflectionUtils.getAllSuperClassesAndInterfaces(ArrayList.class);
+    }
+
+
+    //    Метод принимает объект и меняет всего его приватные поля на их нулевые значение (null, 0, false etc)+
+    @Test
+    public void testChangePrivateFieldsToDefault() throws IllegalAccessException {
+        TestVo testVo = new TestVo();
+        ReflectionUtils.changePrivateFieldsToDefault(testVo);
+        assertEquals(0, testVo.getC());
+        assertNull(testVo.getArray());
+    }
+
 }

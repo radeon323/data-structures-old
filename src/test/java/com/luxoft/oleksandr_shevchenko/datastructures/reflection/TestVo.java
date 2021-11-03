@@ -6,7 +6,12 @@ public class TestVo {
     int age;
     public int a = 1;
     public int b = 2;
+    private int c = 3;
+    private int[] array = {4,5,6};
 
+    public int[] getArray() {
+        return array;
+    }
 
     public TestVo() {
         isCreatedWithDefaultConstructor = true;
@@ -28,6 +33,10 @@ public class TestVo {
 
     public int getB() {
         return b;
+    }
+
+    public int getC() {
+        return c;
     }
 
     public void incrementA() {
