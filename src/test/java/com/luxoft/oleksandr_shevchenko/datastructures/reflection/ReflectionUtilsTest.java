@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ReflectionUtilsTest {
 
+
     //    Метод принимает класс и возвращает созданный объект этого класса
     @Test
     public void testCreateObjectBasedOnDefaultConstructor() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
@@ -26,20 +27,27 @@ class ReflectionUtilsTest {
 
     //    Метод принимает object и вызывает у него все методы без параметров
     @Test
-    public void testCallMethods() throws InvocationTargetException, IllegalAccessException, NoSuchFieldException, InstantiationException, NoSuchMethodException {
+    public void testCallMethods() throws InvocationTargetException, IllegalAccessException, InstantiationException, NoSuchMethodException {
         Object obj = ReflectionUtils.createObject(TestVo.class);
         ReflectionUtils.callAllMethodsWithoutParameters(obj);
-        assertEquals(0,obj.getClass().getField("age"));
+        assertEquals(2, obj.getClass().getMethod("getA").invoke(obj));
     }
 
 
     //    Метод принимает object и выводит на экран все сигнатуры методов в который есть final
     @Test
-    public void testShowSignatures() throws InvocationTargetException, IllegalAccessException, NoSuchFieldException, InstantiationException, NoSuchMethodException {
-
+    public void testShowSignatures() throws InvocationTargetException, IllegalAccessException, InstantiationException, NoSuchMethodException {
         Object obj = ReflectionUtils.createObject(TestVo.class);
         ReflectionUtils.showSignatures(obj);
-        //ReflectionUtils.showSignatures(obj);
-        //assertEquals(1,obj.getClass().getField("a"));
+        String actual = ReflectionUtils.showSignaturesReturn(obj);
+        String expected = "public final void com.luxoft.oleksandr_shevchenko.datastructures.reflection.TestVo.incrementB()";
+        assertEquals(expected, actual);
+    }
+
+
+    //    Метод принимает Class и выводит все не публичные методы этого класса
+    @Test
+    public void testGetAllNotPublicMethods() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        assertTrue(ReflectionUtils.getAllNotPublicMethods(TestVo.class).contains("getAge"));
     }
 }

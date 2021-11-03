@@ -4,8 +4,8 @@ public class TestVo {
     boolean isCreatedWithDefaultConstructor;
     boolean isCreatedWithIntConstructor;
     int age;
-    final int a = 1;
-    final int b = 2;
+    public int a = 1;
+    public int b = 2;
 
 
     public TestVo() {
@@ -18,7 +18,7 @@ public class TestVo {
         age = 1;
     }
 
-    public int getAge() {
+    int getAge() {
         return age;
     }
 
@@ -29,4 +29,13 @@ public class TestVo {
     public int getB() {
         return b;
     }
+
+    public void incrementA() {
+        a++;
+    }
+
+    public final void incrementB() {
+        b++;
+    }
+
 }
