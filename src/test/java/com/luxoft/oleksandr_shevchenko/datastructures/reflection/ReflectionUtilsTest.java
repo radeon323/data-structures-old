@@ -62,6 +62,7 @@ class ReflectionUtilsTest {
         ReflectionUtils.changePrivateFieldsToDefault(testVo);
         assertEquals(0, testVo.getC());
         assertNull(testVo.getArray());
+        assertFalse(testVo.isBool());
     }
 
 }

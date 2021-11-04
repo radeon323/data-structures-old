@@ -8,6 +8,11 @@ public class TestVo {
     public int b = 2;
     private int c = 3;
     private int[] array = {4,5,6};
+    private boolean bool = true;
+
+    public boolean isBool() {
+        return bool;
+    }
 
     public int[] getArray() {
         return array;
@@ -15,12 +20,10 @@ public class TestVo {
 
     public TestVo() {
         isCreatedWithDefaultConstructor = true;
-        age = 0;
     }
 
     public TestVo(int value) {
         isCreatedWithIntConstructor = true;
-        age = 1;
     }
 
     int getAge() {
