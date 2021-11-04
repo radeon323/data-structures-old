@@ -28,26 +28,15 @@ public class ReflectionUtils {
 
 
     //    Метод принимает object и выводит на экран все сигнатуры методов в который есть final
-    static void showSignatures(Object obj) {
+    static void showSignatures(Object obj) throws InvocationTargetException, IllegalAccessException {
         Class clazz = obj.getClass();
         Method[] methods = clazz.getDeclaredMethods();
         for (Method method : methods) {
             if (Modifier.isFinal(method.getModifiers())) {
                 System.out.println(method);
+                method.invoke(obj);
             }
         }
-    }
-    static String showSignaturesReturn(Object obj) {
-        Class clazz = obj.getClass();
-        ArrayList arrayList = new ArrayList();
-        Method[] methods = clazz.getDeclaredMethods();
-        for (Method method : methods) {
-            if (Modifier.isFinal(method.getModifiers())) {
-                System.out.println(method);
-                arrayList.add(obj);
-            }
-        }
-        return arrayList.toString();
     }
 
 

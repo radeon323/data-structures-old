@@ -31,13 +31,12 @@ class ReflectionUtilsTest {
 
 
     //    Метод принимает object и выводит на экран все сигнатуры методов в который есть final
-    //    не знаю як зробити тест
     @Test
-    public void testShowSignatures() throws InvocationTargetException, IllegalAccessException, InstantiationException, NoSuchMethodException {
-        Object obj = ReflectionUtils.createObject(TestVo.class);
-        String actual = ReflectionUtils.showSignaturesReturn(obj);
-        String expected = "public final void com.luxoft.oleksandr_shevchenko.datastructures.reflection.TestVo.incrementB()";
-        assertEquals(expected, actual);
+    public void testShowSignatures() throws InvocationTargetException, IllegalAccessException {
+        TestVo testVo = new TestVo();
+        ReflectionUtils.showSignatures(testVo);
+        assertEquals(3, testVo.getB());
+        assertTrue(testVo.trueFalse());
     }
 
 

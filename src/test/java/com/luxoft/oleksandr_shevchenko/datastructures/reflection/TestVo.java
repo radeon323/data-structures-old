@@ -47,4 +47,8 @@ public class TestVo {
         b++;
     }
 
+    public final boolean trueFalse() {
+        return true;
+    }
+
 }
