@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class linkedQueueTest {
+class LinkedQueueTest {
 
 
     @DisplayName("Test enqueue and dequeue work correctly and change size")
