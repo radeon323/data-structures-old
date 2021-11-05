@@ -1,5 +1,7 @@
 package com.luxoft.oleksandr_shevchenko.datastructures.list;
 
+import java.util.Objects;
+
 public class ArrayList implements List {
     private Object[] array;
     private int size;
@@ -100,7 +102,7 @@ public class ArrayList implements List {
             throw new IllegalStateException("List is empty!");
         }
         for (int i = 0; i < size; i++) {
-            if (array[i].equals(value)) {
+            if (Objects.equals(array[i], value)) {
                 return i;
             }
         }
@@ -113,7 +115,7 @@ public class ArrayList implements List {
             throw new IllegalStateException("List is empty!");
         }
         for (int i = size - 1; i >= 0; i--) {
-            if (array[i].equals(value)) {
+            if (Objects.equals(array[i], value)) {
                 return i;
             }
         }

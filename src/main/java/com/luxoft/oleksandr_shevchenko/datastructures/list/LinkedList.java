@@ -148,7 +148,7 @@ public class LinkedList implements List {
         }
         Node current = head;
         for (int i = 0; i < size - 1; i++) {
-            if (current.value.equals(value)) {
+            if (Objects.equals(current.value, value)) {
                 return i;
             }
             current = current.next;
@@ -163,7 +163,7 @@ public class LinkedList implements List {
         }
         Node current = tail;
         for (int i = size - 1; i >= 0; i--) {
-            if (current.value.equals(value)) {
+            if (Objects.equals(current.value, value)) {
                 return i;
             }
             current = current.prev;
