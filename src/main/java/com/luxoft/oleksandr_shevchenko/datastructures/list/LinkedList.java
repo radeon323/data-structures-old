@@ -36,9 +36,6 @@ public class LinkedList implements List {
 
     @Override
     public void add(Object value, int index) {
-        if (isEmpty()) {
-            throw new IllegalStateException("List is empty!");
-        }
         if (index >= size) {
             throw new IndexOutOfBoundsException("List index is out of bounds!");
         }
