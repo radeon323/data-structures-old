@@ -43,7 +43,7 @@ public class LinkedList implements List {
             throw new IndexOutOfBoundsException("List index is out of bounds!");
         }
         Node newNode = new Node(value);
-        if (isEmpty()) {
+        if (size == 0) {
             head = tail = newNode;
         } else if (index == size - 1) {
             tail.next = newNode;
