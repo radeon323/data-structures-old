@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public abstract class AbstractListTest {
@@ -234,7 +237,31 @@ public abstract class AbstractListTest {
         list.add("string_1");
         list.add("string_2");
         assertEquals("[string_1, string_2]", list.toString());
-
     }
+
+    @DisplayName("Test Iterator hasNext method true when element exist")
+    @Test
+    void testIteratorHasNextTrueWhenExist() {
+        list.add("A");
+        Iterator iterator = list.iterator();
+        assertTrue(iterator.hasNext());
+    }
+
+    @DisplayName("Test Iterator hasNext method false when element doesn't exist")
+    @Test
+    void testIteratorHasNextFalseWhenDoesNotExist() {
+        Iterator iterator = list.iterator();
+        assertFalse(iterator.hasNext());
+    }
+
+    @DisplayName("Test ThrowNoSuchElementException Iterator")
+    @Test
+    public void testThrowNoSuchElementExceptionIterator() {
+        Assertions.assertThrows(NoSuchElementException.class, () -> {
+            Iterator iterator = list.iterator();
+            iterator.next();
+        });
+    }
+
 
 }

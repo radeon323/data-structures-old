@@ -1,9 +1,34 @@
 package com.luxoft.oleksandr_shevchenko.datastructures.list;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.StringJoiner;
 
 public class LinkedList extends AbstractList {
+
+    private class MyIterator implements Iterator {
+
+        private int count = 0;
+        private Node current = head;
+
+        @Override
+        public boolean hasNext() {
+            return count < size;
+        }
+
+        @Override
+        public Object next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+
+            head = current;
+            current = current.next;
+            count++;
+            return current.getValue();
+        }
+    }
 
     private static class Node {
         private Object value;
@@ -29,7 +54,6 @@ public class LinkedList extends AbstractList {
             }
         return current;
     }
-
 
     @Override
     public void add(Object value) {
@@ -161,4 +185,12 @@ public class LinkedList extends AbstractList {
         }
         return stringJoiner.toString();
     }
+
+    @Override
+    public MyIterator iterator() {
+        return new MyIterator();
+    }
+
+
+
 }

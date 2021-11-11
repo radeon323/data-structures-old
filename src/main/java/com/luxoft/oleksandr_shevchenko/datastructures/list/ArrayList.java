@@ -1,8 +1,29 @@
 package com.luxoft.oleksandr_shevchenko.datastructures.list;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 public class ArrayList extends AbstractList {
+
+    private class MyIterator implements Iterator {
+
+        private int count = 0;
+
+        @Override
+        public boolean hasNext() {
+            return count < size;
+        }
+
+        @Override
+        public Object next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            count++;
+            return array[count];
+        }
+    }
 
     private Object[] array;
 
@@ -113,4 +134,12 @@ public class ArrayList extends AbstractList {
         }
         return "[" + string + "]";
     }
+
+    @Override
+    public MyIterator iterator() {
+        return new MyIterator();
+    }
+
+
+
 }

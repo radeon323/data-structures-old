@@ -1,6 +1,6 @@
 package com.luxoft.oleksandr_shevchenko.datastructures.list;
 
-public abstract class AbstractList implements List {
+public abstract class AbstractList implements List, Iterable {
 
     protected int size = 0;
 
@@ -18,5 +18,7 @@ public abstract class AbstractList implements List {
     public boolean contains(Object value) {
         return indexOf(value) != -1;
     }
+
+
 
 }
