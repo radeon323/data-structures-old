@@ -3,35 +3,37 @@ package com.luxoft.oleksandr_shevchenko.datastructures.list;
 import java.util.Objects;
 import java.util.StringJoiner;
 
-public class LinkedList implements List {
+public class LinkedList extends AbstractList {
 
-    private int size;
+    private static class Node {
+        private Object value;
+        private Node next;
+        private Node prev;
+
+        public Node(Object value) {
+            this.value = value;
+        }
+
+        public Object getValue() {
+            return value;
+        }
+    }
+
     private Node head;
     private Node tail;
 
     private Node getNodeByIndex(int index) {
         Node current = head;
-        for (int i = 0; i < index; i++) {
-            current = current.next;
-        }
+            for (int i = 0; i < index; i++) {
+                current = current.next;
+            }
         return current;
     }
 
+
     @Override
     public void add(Object value) {
-        Node newNode = new Node(value);
-        if (isEmpty()) {
-            head = tail = newNode;
-        } else {
-            Node current = head;
-            while (current.next!= null) {
-                current = current.next;
-            }
-            current.next = newNode;
-            newNode.prev = tail;
-            tail = newNode;
-        }
-        size++;
+        add(value, size - 1);
     }
 
     @Override
@@ -117,28 +119,6 @@ public class LinkedList implements List {
         head = null;
         tail = null;
         size = 0;
-    }
-
-    @Override
-    public int size() {
-        return size;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
-    @Override
-    public boolean contains(Object value) {
-        Node current = head;
-        for (int i = 0; i < size; i++) {
-            if (current.value.equals(value)) {
-                return true;
-            }
-            current = current.next;
-        }
-        return false;
     }
 
     @Override

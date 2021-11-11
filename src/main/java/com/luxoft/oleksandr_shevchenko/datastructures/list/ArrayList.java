@@ -2,9 +2,9 @@ package com.luxoft.oleksandr_shevchenko.datastructures.list;
 
 import java.util.Objects;
 
-public class ArrayList implements List {
+public class ArrayList extends AbstractList {
+
     private Object[] array;
-    private int size;
 
     public ArrayList() {
         array = new Object[10];
@@ -75,26 +75,6 @@ public class ArrayList implements List {
         size = 0;
     }
 
-    @Override
-    public int size() {
-        return size;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
-    @Override
-    public boolean contains(Object value) {
-        for (int i = 0; i < size; i++) {
-            Object valueInList = array[i];
-            if (value.equals(valueInList)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     @Override
     public int indexOf(Object value) {
