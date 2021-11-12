@@ -49,9 +49,16 @@ public class LinkedList extends AbstractList {
 
     private Node getNodeByIndex(int index) {
         Node current = head;
+        if (index <= size / 2) {
             for (int i = 0; i < index; i++) {
                 current = current.next;
             }
+        } else if (index > size / 2) {
+            for (int i = size - 1; i >= index; i--) {
+                current = tail;
+                current = current.prev;
+            }
+        }
         return current;
     }
 
