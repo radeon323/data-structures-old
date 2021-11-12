@@ -3,11 +3,18 @@ package com.luxoft.oleksandr_shevchenko.datastructures.queue;
 import java.util.Objects;
 import java.util.StringJoiner;
 
-public class LinkedQueue implements Queue {
+public class LinkedQueue extends AbstractQueue {
 
-    private int size;
+    private static class Node {
+        Object value;
+        Node next;
+
+        public Node(Object value) {
+            this.value = value;
+        }
+    }
+
     private Node head;
-
 
     @Override
     public void enqueue(Object value) {
@@ -38,16 +45,6 @@ public class LinkedQueue implements Queue {
     @Override
     public Object peek() {
         return head.value;
-    }
-
-    @Override
-    public int size() {
-        return size;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return size == 0;
     }
 
     @Override

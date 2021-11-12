@@ -1,7 +1,9 @@
 package com.luxoft.oleksandr_shevchenko.datastructures.queue;
 
-public class ArrayQueue implements Queue {
-    private int size;
+import java.util.StringJoiner;
+
+public class ArrayQueue extends AbstractQueue {
+
     private Object[] array;
 
     public ArrayQueue() {
@@ -44,16 +46,6 @@ public class ArrayQueue implements Queue {
     }
 
     @Override
-    public int size() {
-        return size;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
-    @Override
     public boolean contains(Object value) {
         for (int i = 0; i < size; i++) {
             Object valueInQueue = array[i];
@@ -74,14 +66,11 @@ public class ArrayQueue implements Queue {
 
     @Override
     public String toString(){
-        StringBuilder string = new StringBuilder();
+        StringJoiner stringJoiner = new StringJoiner(", ", "[", "]");
         for (int i = 0; i < size; i++) {
-            string.append(array[i]);
-            if (i < size - 1){
-                string.append(", ");
-            }
+            stringJoiner.add(array[i].toString());
         }
-        return "[" + string + "]";
+        return stringJoiner.toString();
     }
 
 }
