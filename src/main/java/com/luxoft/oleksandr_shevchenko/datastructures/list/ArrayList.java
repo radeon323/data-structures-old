@@ -49,12 +49,7 @@ public class ArrayList extends AbstractList {
 
     @Override
     public Object remove(int index) {
-        if (isEmpty()) {
-            throw new IllegalStateException("List is empty!");
-        }
-        if (index >= size) {
-            throw new IndexOutOfBoundsException("List index is out of bounds!");
-        }
+        throwExceptions(index);
         Object result = array[index];
         for (int i = 0; i < size - 1; i++) {
            if (array[i] == array[index]){
@@ -67,23 +62,13 @@ public class ArrayList extends AbstractList {
 
     @Override
     public Object get(int index) {
-        if (isEmpty()) {
-            throw new IllegalStateException("List is empty!");
-        }
-        if (index >= size) {
-            throw new IndexOutOfBoundsException("List index is out of bounds!");
-        }
+        throwExceptions(index);
         return array[index];
     }
 
     @Override
     public Object set(Object value, int index) {
-        if (isEmpty()) {
-            throw new IllegalStateException("List is empty!");
-        }
-        if (index >= size) {
-            throw new IndexOutOfBoundsException("List index is out of bounds!");
-        }
+        throwExceptions(index);
         array[index] = value;
         return array[index];
     }
@@ -139,7 +124,6 @@ public class ArrayList extends AbstractList {
     public MyIterator iterator() {
         return new MyIterator();
     }
-
 
 
 }

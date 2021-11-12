@@ -28,6 +28,11 @@ public class LinkedList extends AbstractList {
             count++;
             return current.getValue();
         }
+
+        @Override
+        public void remove() {
+
+        }
     }
 
     private static class Node {
@@ -93,12 +98,7 @@ public class LinkedList extends AbstractList {
 
     @Override
     public Object remove(int index) {
-        if (isEmpty()) {
-            throw new IllegalStateException("List is empty!");
-        }
-        if (index >= size) {
-            throw new IndexOutOfBoundsException("List index is out of bounds!");
-        }
+        throwExceptions(index);
         Node current = head;
         if (size == 1 && index == 0) {
             clear();
@@ -122,23 +122,13 @@ public class LinkedList extends AbstractList {
 
     @Override
     public Object get(int index) {
-        if (isEmpty()) {
-            throw new IllegalStateException("List is empty!");
-        }
-        if (index >= size) {
-            throw new IndexOutOfBoundsException("List index is out of bounds!");
-        }
+        throwExceptions(index);
         return getNodeByIndex(index).value;
     }
 
     @Override
     public Object set(Object value, int index) {
-        if (isEmpty()) {
-            throw new IllegalStateException("List is empty!");
-        }
-        if (index >= size) {
-            throw new IndexOutOfBoundsException("List index is out of bounds!");
-        }
+        throwExceptions(index);
         Objects.checkIndex(index, size);
         Node current = getNodeByIndex(index);
         current.value = value;
