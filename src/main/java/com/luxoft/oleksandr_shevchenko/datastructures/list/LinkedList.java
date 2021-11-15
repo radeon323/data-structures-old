@@ -31,8 +31,14 @@ public class LinkedList extends AbstractList {
 
         @Override
         public void remove() {
-
+//            while (current.next != null) {
+//                current = tail;
+//                tail.prev.next = null;
+//                tail = tail.prev;
+//            }
+            size--;
         }
+
     }
 
     private static class Node {
@@ -54,7 +60,11 @@ public class LinkedList extends AbstractList {
 
     private Node getNodeByIndex(int index) {
         Node current = head;
-        if (index <= size / 2) {
+        if (index == 0) {
+            current = head;
+        } else if (index == size - 1) {
+            current = tail;
+        } else if (index <= size / 2) {
             for (int i = 0; i < index; i++) {
                 current = current.next;
             }
@@ -144,9 +154,7 @@ public class LinkedList extends AbstractList {
 
     @Override
     public int indexOf(Object value) {
-        if (isEmpty()) {
-            throw new IllegalStateException("List is empty!");
-        }
+        throwExceptions();
         Node current = head;
         for (int i = 0; i < size - 1; i++) {
             if (Objects.equals(current.value, value)) {
@@ -159,9 +167,7 @@ public class LinkedList extends AbstractList {
 
     @Override
     public int lastIndexOf(Object value) {
-        if (isEmpty()) {
-            throw new IllegalStateException("List is empty!");
-        }
+        throwExceptions();
         Node current = tail;
         for (int i = size - 1; i >= 0; i--) {
             if (Objects.equals(current.value, value)) {
@@ -187,6 +193,7 @@ public class LinkedList extends AbstractList {
     public MyIterator iterator() {
         return new MyIterator();
     }
+
 
 
 

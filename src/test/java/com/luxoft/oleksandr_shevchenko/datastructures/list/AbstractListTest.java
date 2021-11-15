@@ -56,7 +56,7 @@ public abstract class AbstractListTest {
         list.add("B");
         assertEquals(2, list.size());
         assertEquals("A", list.get(0));
-        assertEquals("A", list.get(0));
+        assertEquals("B", list.get(1));
         assertEquals(2, list.size());
     }
 
@@ -260,6 +260,31 @@ public abstract class AbstractListTest {
             Iterator iterator = list.iterator();
             iterator.next();
         });
+    }
+
+    @DisplayName("Test Iterator remove")
+    @Test
+    void testIteratorRemove() {
+        list.add("A");
+        list.add("B");
+        list.add("C");
+        Iterator iterator = list.iterator();
+        assertTrue(iterator.hasNext());
+        assertEquals(3, list.size());
+        assertEquals("C", list.get(2));
+        System.out.println(list);
+        iterator.remove();
+        System.out.println(list);
+        assertEquals("B", list.get(1));
+        assertEquals(2, list.size());
+        iterator.remove();
+        System.out.println(list);
+        assertEquals("A", list.get(0));
+        assertEquals(1, list.size());
+        iterator.remove();
+        System.out.println(list);
+        assertFalse(iterator.hasNext());
+        System.out.println(list);
     }
 
 

@@ -23,6 +23,11 @@ public class ArrayList extends AbstractList {
             count++;
             return array[count];
         }
+
+        @Override
+        public void remove() {
+
+        }
     }
 
     private Object[] array;
@@ -84,9 +89,7 @@ public class ArrayList extends AbstractList {
 
     @Override
     public int indexOf(Object value) {
-        if (isEmpty()) {
-            throw new IllegalStateException("List is empty!");
-        }
+        throwExceptions();
         for (int i = 0; i < size; i++) {
             if (Objects.equals(array[i], value)) {
                 return i;
@@ -97,9 +100,7 @@ public class ArrayList extends AbstractList {
 
     @Override
     public int lastIndexOf(Object value) {
-        if (isEmpty()) {
-            throw new IllegalStateException("List is empty!");
-        }
+        throwExceptions();
         for (int i = size - 1; i >= 0; i--) {
             if (Objects.equals(array[i], value)) {
                 return i;
@@ -124,6 +125,8 @@ public class ArrayList extends AbstractList {
     public MyIterator iterator() {
         return new MyIterator();
     }
+
+
 
 
 }

@@ -28,6 +28,12 @@ public abstract class AbstractList implements List, Iterable {
         }
     }
 
+    public void throwExceptions() {
+        if (isEmpty()) {
+            throw new IllegalStateException("List is empty!");
+        }
+    }
+
 
 
 }
